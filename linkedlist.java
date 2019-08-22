@@ -193,15 +193,42 @@ public class linkedlist {
 			temp = temp.next;
 		}
 
-		if (temp == null || temp.next==null)
+		if (temp == null || temp.next == null)
 			throw new Exception("INVALID INDEX");
 
 		temp.next = temp.next.next;
 	}
-	
-	// O(1) in java since the garbage collector will take care of removing those nodes from the memory
+
+	// O(1) in java since the garbage collector will take care of removing those
+	// nodes from the memory
 	public void deleteLL() {
 		this.head = null;
+	}
+
+	// O(n)
+	public int lengthI() {
+
+		int count = 0;
+		Node temp = head;
+		while (temp != null) {
+			count++;
+			temp = temp.next;
+		}
+		return count;
+	}
+
+	// O(n)
+	public int lengthR() {
+		return lengthR(head);
+	}
+
+	// O(n)
+	private int lengthR(Node temp) {
+
+		if (temp == null)
+			return 0;
+
+		return lengthR(temp.next) + 1;
 	}
 
 }
