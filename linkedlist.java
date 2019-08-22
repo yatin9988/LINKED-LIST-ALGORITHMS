@@ -171,6 +171,7 @@ public class linkedlist {
 		}
 	}
 
+	// O(n)
 	public void removeAt(int index) throws Exception {
 
 		if (this.isEmpty())
@@ -196,6 +197,11 @@ public class linkedlist {
 			throw new Exception("INVALID INDEX");
 
 		temp.next = temp.next.next;
+	}
+	
+	// O(1) in java since the garbage collector will take care of removing those nodes from the memory
+	public void deleteLL() {
+		this.head = null;
 	}
 
 }
