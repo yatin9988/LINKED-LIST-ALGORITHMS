@@ -231,4 +231,67 @@ public class linkedlist {
 		return lengthR(temp.next) + 1;
 	}
 
+	// O(n)
+	public boolean SearchI(int item) {
+
+		Node temp = head;
+		while (temp != null) {
+			if (temp.data == item)
+				return true;
+			temp = temp.next;
+		}
+		return false;
+	}
+
+	// O(n)
+	public boolean SearchR(int item) {
+		return SearchR(head, item);
+	}
+
+	// O(n)
+	private boolean SearchR(Node temp, int item) {
+
+		if (temp == null)
+			return false;
+
+		if (temp.data == item)
+			return true;
+
+		return SearchR(temp.next, item);
+	}
+
+	// O(n)
+	public int nthNodeI(int index) throws Exception {
+
+		if (index < 0)
+			throw new Exception("INVALID INDEX");
+		Node temp = head;
+		for (int i = 0; i < index; i++) {
+			if (temp == null)
+				throw new Exception("INVALID INDEX");
+			temp = temp.next;
+		}
+		if (temp == null)
+			throw new Exception("INVALID INDEX");
+		return temp.data;
+	}
+
+	// O(n)
+	public int nthNodeR(int index) throws Exception {
+		return nthNodeR(head, index, 0);
+	}
+
+	// O(n)
+	private int nthNodeR(Node temp, int index, int count) {
+		if (index < 0)
+			return -1;
+
+		if (temp == null)
+			return -1;
+
+		if (count == index)
+			return temp.data;
+
+		return nthNodeR(temp.next, index, count + 1);
+	}
 }
