@@ -95,10 +95,53 @@ public class linkedlist {
 				throw new Exception("INVALID INDEX");
 			temp = temp.next;
 		}
-        if(temp==null)
-        	throw new Exception("INVALID INDEX");
+		if (temp == null)
+			throw new Exception("INVALID INDEX");
 		Node temp2 = temp.next;
 		temp.next = nn;
 		nn.next = temp2;
 	}
+
+	// O(n)
+	public void deleteKeyI(int key) {
+
+		Node prev = null;
+		Node curr = head;
+
+		while (curr != null) {
+
+			if (curr.data == key) {
+
+				if (prev == null) {
+					this.head = curr.next;
+					return;
+				} else {
+					prev.next = curr.next;
+				}
+			}
+
+			prev = curr;
+			curr = curr.next;
+		}
+	}
+
+	public void deleteKeyR(int key) {
+		deleteKeyR(null, head, key);
+	}
+
+	private void deleteKeyR(Node prev, Node curr, int key) {
+
+		if (curr.data == key) {
+			if (prev == null) {
+				this.head = curr.next;
+			} else {
+				prev.next = curr.next;
+			}
+			return;
+		}
+
+		deleteKeyR(curr, curr.next, key);
+
+	}
+
 }
