@@ -125,10 +125,12 @@ public class linkedlist {
 		}
 	}
 
+	// O(n)
 	public void deleteKeyR(int key) {
 		deleteKeyR(null, head, key);
 	}
 
+	// O(n)
 	private void deleteKeyR(Node prev, Node curr, int key) {
 
 		if (curr.data == key) {
@@ -141,7 +143,59 @@ public class linkedlist {
 		}
 
 		deleteKeyR(curr, curr.next, key);
+	}
 
+	// O(1)
+	public void removeFirst() throws Exception {
+
+		if (this.isEmpty())
+			throw new Exception("UNDERFLOW");
+
+		this.head = this.head.next;
+
+	}
+
+	// O(n)
+	public void removeLast() throws Exception {
+
+		if (this.isEmpty())
+			throw new Exception("UNDERFLOW");
+
+		if (head.next == null)
+			head = head.next;
+		else {
+			Node temp = head;
+			while (temp.next.next != null)
+				temp = temp.next;
+			temp.next = null;
+		}
+	}
+
+	public void removeAt(int index) throws Exception {
+
+		if (this.isEmpty())
+			throw new Exception("UNDERFLOW");
+
+		if (index < 0)
+			throw new Exception("INVALID INDEX");
+
+		if (index == 0) {
+			removeFirst();
+			return;
+		}
+
+		Node temp = head;
+		for (int i = 0; i < index - 1; i++) {
+
+			if (temp == null)
+				throw new Exception("INVALID INDEX");
+			temp = temp.next;
+		}
+
+		if (temp == null || temp.next==null)
+			throw new Exception("INVALID INDEX");
+
+		temp.next = temp.next.next;
 	}
 
 }
