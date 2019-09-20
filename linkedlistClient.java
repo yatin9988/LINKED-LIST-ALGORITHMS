@@ -8,7 +8,6 @@ public class linkedlistClient {
         list.addAt(0,0);
         list.addLast(10);
         list.addFirst(20);
-//        list.display();
         list.addAt(4,11);
         list.display();
 	}
